@@ -1,0 +1,137 @@
+openapi: 3.0.3
+info:
+  title: website
+  description: website
+  version: 5.0.0-alpha
+servers:
+  - url: "https://prod1.weos.sh/website"
+  - url: "http://localhost:8681"
+x-weos-config:
+  basePath:
+  database:
+    driver: sqlite3
+    database: test.db
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobTitle:
+          type: string
+        email:
+          type: string
+        dob:
+          type: string
+        age:
+          type: integer
+
+paths:
+  /employees:
+    get:
+      operationId: Get Employees
+      summary: Get a list of Employees
+      responses:
+        200:
+          description: List of Employees
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Employee"
+    post:
+      operationId: Add Employee
+      summary: Create Employee
+      requestBody:
+        description: Employee information that is submitted
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Employee"
+      responses:
+        201:
+          description: Add Employee
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+
+  /employee/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Get employee data by id
+      responses:
+        200:
+          description: Get employee information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Update Employee Information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Employee"
+      responses:
+        200:
+          description: Get Employee information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Employee"
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Delete Employee
+      responses:
+        200:
+          description: Delete Employee
+
+  /health:
+    get:
+      responses:
+        200:
+          description: Health Endpoint
+          content:
+            text/html:
+              example: |
+                <html><body>Health</body></html>
+  /:
+    get:
+      responses:
+        200:
+          description: Home Endpoint
+          content:
+            text/html:
+              example: |
+                <html><body>Hello World</body></html>
