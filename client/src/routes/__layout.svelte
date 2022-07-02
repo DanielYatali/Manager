@@ -1,7 +1,7 @@
 <script>
-  import "../style.css";
+	import '../app.css';
 </script>
 
 <main>
-  <slot />
+	<slot />
 </main>

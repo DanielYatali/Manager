@@ -55,7 +55,7 @@ paths:
                   items:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Jobs"
+                      $ref: "#/components/schemas/Job"
     post:
       operationId: Add Job
       summary: Create Job
