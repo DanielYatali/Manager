@@ -1,193 +1,168 @@
-<!-- Homepage of todo app -->
+<!-- Renders the dashboard -->
 <script>
-	// @ts-ignore
-	import { endpoints } from '$lib/endpoints';
-	import JobTitles from '../components/jobTitles.svelte';
-	import { onMount } from 'svelte';
+	import Nav from '../components/nav.svelte';
+	import DashboardSideBar from '../components/dashboardSideBar.svelte';
+	import { onMount } from 'svelte/internal';
+	import { goto } from '$app/navigation';
 
-	let response = {};
-	let employees = [];
-	let firstName = '';
-	let lastName = '';
-	let jobTitle = '';
-	let age = '';
-	let dob = '';
-	let email = '';
-
-	//When component mounted fetch all todos
+	//Checks if newuser of logged in
+	//If new user then send the user to fill out the question
+	//if login and not a new user then they can access the dashboard
 	// onMount(() => {
-	//   getTodos();
+	// 	if (!$CurrentUser.loggedIn) {
+	// 		goto('/login');
+	// 	}
+	// 	if ($CurrentUser.newUser) {
+	// 		goto('/questions');
+	// 	}
 	// });
-
-	//Fetches all todos from WeOS server
-	const getEmployees = async () => {
-		try {
-			const rawResponse = await fetch(endpoints.server + '/employees', {
-				method: 'GET',
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json'
-				}
-			});
-			response = await rawResponse.json();
-			employees = response.items;
-			console.log(employees);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-	//Creates a todo
-	const createEmployee = async () => {
-		//Prevent user from making blank todo
-		if (firstName != '' && lastName != '') {
-			let employee = {
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				age: age,
-				dob: dob,
-				jobTitle: jobTitle
-			};
-			try {
-				const rawResponse = await fetch(endpoints.server + '/employees', {
-					method: 'POST',
-					headers: {
-						Accept: 'application/json',
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(employee)
-				});
-				response = await rawResponse.json();
-				console.log(response);
-				// description = "";
-			} catch (error) {
-				console.error(error);
-			}
-		}
-	};
-
-	// //Removes a todo
-	// const removeTodo = async (id) => {
-	//   try {
-	//     const rawResponse = await fetch(endpoints.server + "/todos/" + id, {
-	//       method: "DELETE",
-	//       headers: {
-	//         Accept: "application/json",
-	//         "Content-Type": "application/json",
-	//       },
-	//     });
-	//     response = await rawResponse.json();
-	//     // console.log(response);
-	//     //Fetches updates todo list
-	//     getTodos();
-	//   } catch (error) {
-	//     console.error(error);
-	//   }
-	// };
-
-	// //Edits todo by sending updated values to WeOS server
-	// const editTodo = async (updateTodo) => {
-	//   try {
-	//     const rawResponse = await fetch(
-	//       endpoints.server + "/todos/" + updateTodo.id,
-	//       {
-	//         method: "PUT",
-	//         headers: {
-	//           Accept: "application/json",
-	//           "Content-Type": "application/json",
-	//         },
-	//         body: JSON.stringify(updateTodo),
-	//       }
-	//     );
-	//     let response = await rawResponse.json();
-	//     // console.log(response);
-	//     //Fetching updated todo list
-	//     getTodos();
-	//   } catch (error) {
-	//     console.error(error);
-	//   }
-	// };
 </script>
 
-<div class="h-100 w-full flex items-center justify-center bg-teal-lightest">
-	<div class="bg-red rounded shadow p-6 m-4 w-full lg:w-3/4 bg-gray-200">
-		<h1 class="text-3xl text-center text-gray-700 pb-4">Employee List</h1>
-		<div class="mb-4">
-			<div class="w-full flex flex-col gap-2">
-				<div class="w-full flex  gap-2 flex-col sm:flex-row items-center">
-					<!-- binds the title variable to the users input -->
-					<input
-						bind:value={firstName}
-						type="text"
-						class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-gray-600"
-						placeholder="First Name"
-					/>
-					<!-- binds the description variable to the users input -->
-					<input
-						bind:value={lastName}
-						type="text"
-						class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-gray-600"
-						placeholder="Last Name"
-					/>
-				</div>
-				<div class="w-full flex flex-col gap-2 sm:flex-row items-center">
-					<!-- binds the title variable to the users input -->
-					<input
-						bind:value={age}
-						type="number"
-						class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-gray-600"
-						placeholder="age"
-					/>
-					<!-- binds the description variable to the users input -->
-					<input
-						bind:value={dob}
-						type="date"
-						class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-gray-600"
-						placeholder="dob"
-					/>
-				</div>
-				<div class="w-full flex flex-col  gap-2 sm:flex-row items-center">
-					<JobTitles />
-					<!-- binds the title variable to the users input -->
-					<!-- <input
-            bind:value={jobTitle}
-            type="text"
-            class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-gray-600"
-            placeholder="Job Title"
-          />
-          binds the description variable to the users input
-          <input
-            bind:value={email}
-            type="email"
-            class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-gray-600"
-            placeholder="Email"
-          /> -->
-				</div>
-
-				<button
-					on:click|preventDefault={createEmployee}
-					class="flex-no-shrink p-2 rounded-lg text-white bg-gray-500 hover:text-red hover:bg-gray-700"
-					>Add</button
-				>
-			</div>
-
-			<div class="flex flex-col-reverse">
-				{#each employees as employee, Index (employee.id)}
-					<div class="shadow m-2 bg-gray-100 rounded-lg">
-						<!-- <TodoInput {todo} {removeTodo} {editTodo} /> -->
+<div class="sticky top-0 w-full z-40">
+	<Nav />
+</div>
+<div class="flex flex-no-wrap">
+	<div class="fixed z-30">
+		<DashboardSideBar />
+	</div>
+	<div
+		style="min-height: 93vh;"
+		class="md:ml-64 xl:ml-80 container mx-auto py-2 sm:py-10 md:w-4/5 w-11/12 px-6 overflow--y-scroll "
+	>
+		<div class="">
+			<div class="sm:px-6 2xl:container">
+				<div class="grid gap-6 xl:grid-cols-4 md:grid-cols-2">
+					<div class="flex dashboard-bg justify-between p-4 items-center rounded-lg">
+						<div class="text-gold bg-white rounded-full p-1">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon icon-tabler icon-tabler-rocket"
+								width="34"
+								height="34"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path
+									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
+								/>
+								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
+								<circle cx="15" cy="9" r="1" />
+							</svg>
+						</div>
+						<div class="flex flex-col gap-2 text-gray-200">
+							<div class="text-xl font-bold">
+								<span class="">122</span>
+							</div>
+							<div>Projects</div>
+						</div>
 					</div>
-				{/each}
+
+					<div class="flex justify-between p-4  dashboard-bg items-center rounded-lg">
+						<div class="text-gold bg-white rounded-full p-1">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon icon-tabler icon-tabler-rocket"
+								width="34"
+								height="34"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path
+									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
+								/>
+								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
+								<circle cx="15" cy="9" r="1" />
+							</svg>
+						</div>
+						<div class="flex flex-col gap-2 text-gray-200">
+							<div class="text-xl font-bold">122</div>
+							<div>Clients</div>
+						</div>
+					</div>
+
+					<div class="flex  dashboard-bg justify-between p-4 items-center rounded-lg">
+						<div class="text-gold bg-white rounded-full p-1">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon icon-tabler icon-tabler-rocket"
+								width="34"
+								height="34"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path
+									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
+								/>
+								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
+								<circle cx="15" cy="9" r="1" />
+							</svg>
+						</div>
+						<div class="flex flex-col gap-2 text-gray-200">
+							<div class="text-xl font-bold">122</div>
+							<div>Tasks</div>
+						</div>
+					</div>
+
+					<div class="flex dashboard-bg  justify-between p-4 items-center rounded-lg">
+						<div class="text-gold bg-white rounded-full p-1">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon icon-tabler icon-tabler-rocket"
+								width="34"
+								height="34"
+								viewBox="0 0 24 24"
+								stroke-width="2"
+								stroke="currentColor"
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path
+									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
+								/>
+								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
+								<circle cx="15" cy="9" r="1" />
+							</svg>
+						</div>
+						<div class="flex flex-col gap-2 text-gray-200">
+							<div class="text-xl font-bold">122</div>
+							<div>Employees</div>
+						</div>
+					</div>
+				</div>
+				<!-- 
+				<div class="grid gap-6 xl:grid-cols-3">
+					<div>
+						<CarouselGroupCard name={'Popular Groups'} />
+					</div>
+					<div>
+						<CarouselGroupCard name={'Suggested Groups'} />
+					</div>
+					<div>
+						<CarouselGroupCard name={'Some other listing'} />
+					</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
 </div>
 
 <svelte:head>
-	<style>
-		body {
-			--tw-bg-opacity: 1;
-			background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-		}
-	</style>
+	<title>Dashboard</title>
 </svelte:head>

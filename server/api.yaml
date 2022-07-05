@@ -13,21 +13,6 @@ x-weos-config:
     database: test.db
 components:
   schemas:
-    Employee:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        jobTitle:
-          type: string
-        email:
-          type: string
-        dob:
-          type: string
-        age:
-          type: integer
     Job:
       type: object
       properties:
@@ -35,6 +20,26 @@ components:
           type: string
         description:
           type: string
+        employees:
+          type: array
+          items:
+            $ref: "#/components/schemas/Job"
+
+    Employee:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        jobID:
+          type: integer
+        email:
+          type: string
+        dob:
+          type: string
+        age:
+          type: integer
 paths:
   /jobs:
     get:
