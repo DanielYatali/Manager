@@ -16,7 +16,7 @@
 	// });
 </script>
 
-<nav class="dashboard-bg">
+<nav class="mt-5 ">
 	<div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
 		<div class="relative flex items-center justify-between h-16">
 			<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -63,8 +63,9 @@
 				</button>
 			</div>
 			<div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-				<div class="flex-shrink-0 flex items-center">
-					<img
+				<div class="flex-shrink-0 flex items-center font-bold text-2xl">
+					<p>Company<span class="blue-text">Name</span></p>
+					<!-- <img
 						on:click={() => goto('/')}
 						class="cursor-pointer block lg:hidden h-8 w-auto"
 						src="https://i.ibb.co/hdDwHkK/unknown-removebg-preview.png"
@@ -75,9 +76,15 @@
 						class="hidden lg:block h-8 w-auto cursor-pointer"
 						src="https://i.ibb.co/hdDwHkK/unknown-removebg-preview.png"
 						alt="Workflow"
-					/>
+					/> -->
 				</div>
-				<div class="hidden sm:block sm:ml-6">
+				<!-- <div>
+					<div class="py-2 text-xl ml-3">
+						<span>Good Morning</span>
+						<span>John</span>
+					</div>
+				</div> -->
+				<!-- <div class="hidden sm:block sm:ml-6">
 					<div class="flex space-x-4">
 						<a
 							href="/dashboard"
@@ -101,7 +108,7 @@
 							>Contact</a
 						>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div
 				class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"

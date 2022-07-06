@@ -25,124 +25,98 @@
 	<div class="fixed z-30">
 		<DashboardSideBar />
 	</div>
-	<div
-		style="min-height: 93vh;"
-		class="md:ml-64 xl:ml-80 container mx-auto py-2 sm:py-10 md:w-4/5 w-11/12 px-6 overflow--y-scroll "
-	>
-		<div class="">
+
+	<div class="md:ml-64 xl:ml-80 container mx-auto jmd:w-4/5 w-11/12 px-6 overflow--y-scroll ">
+		<div>
+			<h1 class="text-xl font-bold text-center">Overview</h1>
+		</div>
+
+		<div class="mt-5">
 			<div class="sm:px-6 2xl:container">
-				<div class="grid gap-6 xl:grid-cols-4 md:grid-cols-2">
-					<div class="flex dashboard-bg justify-between p-4 items-center rounded-lg">
-						<div class="text-gold bg-white rounded-full p-1">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="icon icon-tabler icon-tabler-rocket"
-								width="34"
-								height="34"
-								viewBox="0 0 24 24"
-								stroke-width="2"
-								stroke="currentColor"
-								fill="none"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
-									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
-								/>
-								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
-								<circle cx="15" cy="9" r="1" />
-							</svg>
-						</div>
-						<div class="flex flex-col gap-2 text-gray-200">
-							<div class="text-xl font-bold">
-								<span class="">122</span>
+				<div class="grid gap-6 xl:grid-cols-3 md:grid-cols-2">
+					<div class="flex justify-between p-4 items-center rounded-lg border">
+						<div class="card-body w-full">
+							<div>
+								<p class="">Number Hours Worked</p>
+								<div class="flex mt-2 justify-between">
+									<h3>36</h3>
+									<div class="flex gap-2">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											xmlns:xlink="http://www.w3.org/1999/xlink"
+											viewBox="0 0 122.88 68.04"
+											width="34"
+											height="17"
+											stroke="currentColor"
+											fill="currentColor"
+											class="text-green-600"
+										>
+											><path
+												d="M2.03,56.52c-2.66,2.58-2.72,6.83-0.13,9.49c2.58,2.66,6.83,2.72,9.49,0.13l27.65-26.98l23.12,22.31 c2.67,2.57,6.92,2.49,9.49-0.18l37.77-38.22v19.27c0,3.72,3.01,6.73,6.73,6.73s6.73-3.01,6.73-6.73V6.71h-0.02 c0-1.74-0.67-3.47-2-4.78c-1.41-1.39-3.29-2.03-5.13-1.91H82.4c-3.72,0-6.73,3.01-6.73,6.73c0,3.72,3.01,6.73,6.73,6.73h17.63 L66.7,47.2L43.67,24.97c-2.6-2.5-6.73-2.51-9.33,0.03L2.03,56.52L2.03,56.52z"
+											/>
+											></svg
+										>
+										+20%
+									</div>
+								</div>
 							</div>
-							<div>Projects</div>
 						</div>
 					</div>
 
-					<div class="flex justify-between p-4  dashboard-bg items-center rounded-lg">
-						<div class="text-gold bg-white rounded-full p-1">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="icon icon-tabler icon-tabler-rocket"
-								width="34"
-								height="34"
-								viewBox="0 0 24 24"
-								stroke-width="2"
-								stroke="currentColor"
-								fill="none"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
-									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
-								/>
-								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
-								<circle cx="15" cy="9" r="1" />
-							</svg>
-						</div>
-						<div class="flex flex-col gap-2 text-gray-200">
-							<div class="text-xl font-bold">122</div>
-							<div>Clients</div>
-						</div>
-					</div>
-
-					<div class="flex  dashboard-bg justify-between p-4 items-center rounded-lg">
-						<div class="text-gold bg-white rounded-full p-1">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="icon icon-tabler icon-tabler-rocket"
-								width="34"
-								height="34"
-								viewBox="0 0 24 24"
-								stroke-width="2"
-								stroke="currentColor"
-								fill="none"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
-									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
-								/>
-								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
-								<circle cx="15" cy="9" r="1" />
-							</svg>
-						</div>
-						<div class="flex flex-col gap-2 text-gray-200">
-							<div class="text-xl font-bold">122</div>
-							<div>Tasks</div>
+					<div class="flex justify-between p-4 items-center rounded-lg border">
+						<div class="card-body w-full">
+							<div>
+								<p class="">Tasks Completed</p>
+								<div class="flex mt-2 justify-between">
+									<h3>36</h3>
+									<div class="flex gap-2">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											xmlns:xlink="http://www.w3.org/1999/xlink"
+											viewBox="0 0 122.88 68.04"
+											width="34"
+											height="17"
+											stroke="currentColor"
+											fill="currentColor"
+											class="text-red-600"
+										>
+											><path
+												d="M2.03,11.52C-0.63,8.94-0.68,4.69,1.9,2.03c2.58-2.66,6.83-2.72,9.49-0.13l27.65,26.98L62.16,6.57 c2.67-2.57,6.92-2.49,9.49,0.18l37.77,38.22V25.7c0-3.72,3.01-6.73,6.73-6.73s6.73,3.01,6.73,6.73v35.63h-0.02 c0,1.74-0.67,3.47-2,4.78c-1.41,1.39-3.29,2.03-5.13,1.91H82.4c-3.72,0-6.73-3.01-6.73-6.73c0-3.72,3.01-6.73,6.73-6.73h17.63 L66.7,20.84L43.67,43.07c-2.6,2.5-6.73,2.51-9.33-0.03L2.03,11.52L2.03,11.52z"
+											/>
+											></svg
+										>
+										-20%
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-
-					<div class="flex dashboard-bg  justify-between p-4 items-center rounded-lg">
-						<div class="text-gold bg-white rounded-full p-1">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="icon icon-tabler icon-tabler-rocket"
-								width="34"
-								height="34"
-								viewBox="0 0 24 24"
-								stroke-width="2"
-								stroke="currentColor"
-								fill="none"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
-									d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"
-								/>
-								<path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
-								<circle cx="15" cy="9" r="1" />
-							</svg>
-						</div>
-						<div class="flex flex-col gap-2 text-gray-200">
-							<div class="text-xl font-bold">122</div>
-							<div>Employees</div>
+					<div class="flex justify-between p-4 items-center rounded-lg border">
+						<div class="card-body w-full">
+							<div>
+								<p class="">Rank</p>
+								<div class="flex mt-2 justify-between">
+									<h3>7th</h3>
+									<div class="flex gap-2">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											xmlns:xlink="http://www.w3.org/1999/xlink"
+											viewBox="0 0 122.88 68.04"
+											width="34"
+											height="17"
+											stroke="currentColor"
+											fill="currentColor"
+											class="text-red-600"
+										>
+											><path
+												d="M2.03,11.52C-0.63,8.94-0.68,4.69,1.9,2.03c2.58-2.66,6.83-2.72,9.49-0.13l27.65,26.98L62.16,6.57 c2.67-2.57,6.92-2.49,9.49,0.18l37.77,38.22V25.7c0-3.72,3.01-6.73,6.73-6.73s6.73,3.01,6.73,6.73v35.63h-0.02 c0,1.74-0.67,3.47-2,4.78c-1.41,1.39-3.29,2.03-5.13,1.91H82.4c-3.72,0-6.73-3.01-6.73-6.73c0-3.72,3.01-6.73,6.73-6.73h17.63 L66.7,20.84L43.67,43.07c-2.6,2.5-6.73,2.51-9.33-0.03L2.03,11.52L2.03,11.52z"
+											/>
+											></svg
+										>
+										-20%
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -164,5 +138,11 @@
 </div>
 
 <svelte:head>
+	<style>
+		body {
+			background-color: #f4f5f7;
+		}
+	</style>
+
 	<title>Dashboard</title>
 </svelte:head>

@@ -7,29 +7,27 @@
 	font-family: 'Poppins', 'san serif';
 }
 
-/* .blue-msg {
-	background-color: #4488bf;
-
-	 background-color: #446a97; 
-	 @apply bg-blue-600; 
-} */
-
-.dashboard-text {
-	/* background-color: #ca9703; */
+.gold-bg {
 	background-color: #8b6508;
-	color: white;
-	/* background-color: #dce7cc; */
-	/* @apply bg-gray-800; */
+}
+.gold-text {
+	color: #8b6508;
 }
 
-.dashboard-bg {
-	/* background-color: #265999; */
-	background-color: #000033;
+.text-default {
+	color: #000000;
 }
 
-.text-gold {
-	color: #ca9703;
+.gray-bg {
+	background-color: #f4f5f7;
 }
-/* .text-light-gold {
-	color: #d5ad36;
-} */
+.light-gray-text {
+	color: #8d8d8d;
+}
+
+.nav-gray-text {
+	color: #706f73;
+}
+.blue-text {
+	color: #1f3bb3;
+}
