@@ -37,9 +37,9 @@
 		}
 	};
 
-	//Creates a todo
+	//Creates an Employee
 	const createEmployee = async () => {
-		//Prevent user from making blank todo
+		//Prevent user from making blank employee
 		if (firstName != '' && lastName != '') {
 			let employee = {
 				firstName: firstName,
