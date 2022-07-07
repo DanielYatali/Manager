@@ -2,20 +2,8 @@
 <script>
 	import Nav from '../components/nav.svelte';
 	import DashboardSideBar from '../components/dashboardSideBar.svelte';
-	import { onMount } from 'svelte/internal';
-	import { goto } from '$app/navigation';
-
-	//Checks if newuser of logged in
-	//If new user then send the user to fill out the question
-	//if login and not a new user then they can access the dashboard
-	// onMount(() => {
-	// 	if (!$CurrentUser.loggedIn) {
-	// 		goto('/login');
-	// 	}
-	// 	if ($CurrentUser.newUser) {
-	// 		goto('/questions');
-	// 	}
-	// });
+	import LineChart from '../components/lineChart.svelte';
+	import Todos from '../components/todos.svelte';
 </script>
 
 <div class="sticky top-0 w-full z-40">
@@ -34,7 +22,7 @@
 		<div class="mt-5">
 			<div class="sm:px-6 2xl:container">
 				<div class="grid gap-6 xl:grid-cols-3 md:grid-cols-2">
-					<div class="flex justify-between p-6 items-center rounded-xl  bg-white">
+					<div class="flex justify-between p-6 items-center rounded-2xl  bg-white">
 						<div class="card-body w-full">
 							<div>
 								<p class="text-lg font-medium text-gray-700">Number of Hours Worked</p>
@@ -62,7 +50,7 @@
 						</div>
 					</div>
 
-					<div class="flex justify-between p-6 items-center rounded-xl  bg-white">
+					<div class="flex justify-between p-6 items-center rounded-2xl  bg-white">
 						<div class="card-body w-full">
 							<div>
 								<p class="text-lg font-medium text-gray-700">Task Completed</p>
@@ -89,7 +77,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex justify-between p-6 items-center rounded-xl  bg-white">
+					<div class="flex justify-between p-6 items-center rounded-2xl  bg-white">
 						<div class="card-body w-full">
 							<div>
 								<p class="text-lg font-medium text-gray-700">Rank</p>
@@ -117,18 +105,15 @@
 						</div>
 					</div>
 				</div>
-				<!-- 
-				<div class="grid gap-6 xl:grid-cols-3">
-					<div>
-						<CarouselGroupCard name={'Popular Groups'} />
+				<br />
+				<div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+					<div class="p-2 rounded-2xl  bg-white col-span-2">
+						<LineChart />
 					</div>
-					<div>
-						<CarouselGroupCard name={'Suggested Groups'} />
+					<div class="p-2 rounded-2xl  bg-white col-span-1">
+						<Todos />
 					</div>
-					<div>
-						<CarouselGroupCard name={'Some other listing'} />
-					</div>
-				</div> -->
+				</div>
 			</div>
 		</div>
 	</div>
