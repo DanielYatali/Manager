@@ -1,13 +1,13 @@
 <script>
-	import Chart from 'chart.js/auto';
+	import Chart from 'chart.js/auto/auto.js';
 	import { onMount } from 'svelte';
 
 	/**
 	 * @type {HTMLCanvasElement}
 	 */
 	let myChart;
-	Chart.defaults.font.family = 'Manrope';
-	Chart.defaults.color = '#706f73';
+	// Chart.defaults.font.family = 'Manrope';
+	// Chart.defaults.color = '#706f73';
 
 	onMount(() => {
 		let graphGradient = myChart.getContext('2d');
