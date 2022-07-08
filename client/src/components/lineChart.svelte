@@ -95,13 +95,7 @@
 	<h5 class="nav-gray-text text-sm">Lorem Ipsum is simply dummy text of the printing</h5>
 	<div class="flex flex-col items-center">
 		<div class="container">
-			<canvas
-				style="display: block; width: 988px; height: 150px;"
-				width="1976"
-				height="300"
-				bind:this={myChart}
-				id="myChart"
-			/>
+			<canvas height="280" bind:this={myChart} id="myChart" />
 		</div>
 	</div>
 </div>
