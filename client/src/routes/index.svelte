@@ -2,9 +2,10 @@
 <script>
 	import Nav from '../components/nav.svelte';
 	import DashboardSideBar from '../components/dashboardSideBar.svelte';
-	import LineChart from '../components/lineChart.svelte';
+	import BarChart from '../components/barChart.svelte';
 	import Todos from '../components/todos.svelte';
 	import TaskLineChart from '../components/taskLineChart.svelte';
+	import PromotionCircle from '../components/promotionCircle.svelte';
 </script>
 
 <div class="sticky top-0 w-full z-40">
@@ -15,11 +16,7 @@
 		<DashboardSideBar />
 	</div>
 
-	<div class="md:ml-64 xl:ml-80 container mx-auto jmd:w-4/5 w-11/12 px-6 overflow--y-scroll ">
-		<div>
-			<h1 class="text-xl font-bold text-center">Overview</h1>
-		</div>
-
+	<div class="md:ml-56 xl:ml-80 container mx-auto jmd:w-4/5 w-11/12 px-6 overflow--y-scroll ">
 		<div class="mt-5">
 			<div class="sm:px-6 2xl:container">
 				<div class="grid gap-6 xl:grid-cols-3 md:grid-cols-2">
@@ -108,44 +105,17 @@
 				</div>
 				<br />
 				<div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-					<div class="p-2 rounded-2xl bg-white col-span-2">
-						<LineChart />
+					<div class="p-2 rounded-2xl  bg-white col-span-2">
+						<BarChart />
 					</div>
 					<div class="grid bg-white rounded-2xl col-span-1 w-full">
 						<!-- Circle -->
-						<div class="inline-flex items-center justify-center rounded-full">
-							<!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
-							<svg class="w-80 h-80 -rotate-90">
-								<circle
-									class="text-gray-200"
-									stroke-width="25"
-									stroke="currentColor"
-									fill="transparent"
-									r="120"
-									cx="160"
-									cy="160"
-								/>
-								<circle
-									class="text-blue-800"
-									stroke-width="25"
-									stroke-dasharray="300, 800"
-									stroke-dashoffset="1"
-									stroke-linecap="round"
-									stroke="currentColor"
-									fill="transparent"
-									r="120"
-									cx="160"
-									cy="160"
-								/>
-							</svg>
-							<span class="absolute text-5xl text-blue-800 font-bold">75</span>
-						</div>
-						<p class="text-center pb-5 font-bold text-xl">Promotion Satus</p>
+						<PromotionCircle />
 					</div>
 				</div>
 				<br />
 				<div class="grid grid-cols-1">
-					<div class="p-2 rounded-2xl  bg-white col-span-1">
+					<div class="p-6 rounded-2xl  bg-white col-span-1">
 						<TaskLineChart />
 					</div>
 				</div>

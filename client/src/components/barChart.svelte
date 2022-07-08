@@ -6,43 +6,39 @@
 
 	onMount(() => {
 		ctx2 = ctx2.getContext('2d');
-		var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+		var gradientStroke1 = ctx2.createLinearGradient(5, 0, 5, 100);
 
-		gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-		gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-		gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-		var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-		gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-		gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-		gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+		gradientStroke1.addColorStop(1, 'rgba(26, 115, 232, 0.02)');
+		gradientStroke1.addColorStop(0, 'rgba(26, 115, 232, 0.18)'); //purple colors
+		var gradientStroke2 = ctx2.createLinearGradient(100, 0, 50, 150);
+		gradientStroke2.addColorStop(1, 'rgba(0, 208, 255, 0.03)');
+		gradientStroke2.addColorStop(0, 'rgba(0, 208, 255, 0.19)'); //purple colors
 
 		new Chart(ctx2, {
-			type: 'line',
+			type: 'bar',
 			data: {
-				labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+				labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
 				datasets: [
 					{
-						label: 'Last Month',
+						label: 'Last Week',
 						tension: 0.4,
 						pointRadius: 0,
-						borderColor: '#cb0c9f',
+						borderColor: '#1F3BB3',
 						borderWidth: 3,
 						backgroundColor: gradientStroke1,
 						fill: true,
-						data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+						data: [5, 4, 6, 8, 2],
 						maxBarThickness: 6
 					},
 					{
-						label: 'This Month',
+						label: 'This Week',
 						tension: 0.4,
 						pointRadius: 0,
-						borderColor: '#3A416F',
+						borderColor: '#52CDFF',
 						borderWidth: 3,
 						backgroundColor: gradientStroke2,
 						fill: true,
-						data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+						data: [4, 8, 6, 3, 5],
 						maxBarThickness: 6
 					}
 				]
@@ -106,20 +102,29 @@
 	});
 </script>
 
-<div class="w-full max-w-full mt-0 lg:flex-none">
+<div class="w-full max-w-full px-6 lg:flex-none mt-6 container h-full">
 	<div
-		class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border"
+		class="border-black/12.5 shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border"
 	>
-		<div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-			<h6>Monthly Performance Chart</h6>
-			<p class="leading-normal text-size-sm">
-				<i class="fa fa-arrow-up text-lime-500" />
-				<span class="font-semibold">4% more</span> in 2021
-			</p>
+		<div class="flex justify-between">
+			<h4 class="font-bold">Performance Chart</h4>
+			<div class="gap-10 text-xs flex light-gray-text">
+				<div class=" text-center flex gap-2">
+					<div class="blue-bg w-2 h-2 rounded-full mt-1" />
+					<span>This Week</span>
+				</div>
+
+				<div class="flex gap-2">
+					<div class="light-blue-bg w-2 h-2 rounded-full mt-1" />
+					<span> Last Week </span>
+				</div>
+			</div>
 		</div>
-		<div class="flex-auto p-4">
+		<h5 class="nav-gray-text text-sm mt-2">Lorem Ipsum is simply dummy text of the printing</h5>
+		<br />
+		<div class=" h-full w-full">
 			<div>
-				<canvas bind:this={ctx2} id="chart-line" height="300" />
+				<canvas bind:this={ctx2} id="chart-line" height="250" />
 			</div>
 		</div>
 	</div>

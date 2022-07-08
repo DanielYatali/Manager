@@ -1,3 +1,3 @@
 export const endpoints = {
-  server: "http://localhost:8681",
+	server: 'http://localhost:8681'
 };
