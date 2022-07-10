@@ -40,6 +40,21 @@ components:
           type: string
         age:
           type: integer
+    Task:
+      type: object
+      properties:
+        tableName:
+          type: string
+        description:
+          type: string
+        dateTimeCreated:
+          type: string
+        progress:
+          type: integer
+        workedTime:
+          type: string
+        status:
+          type: string
 paths:
   /jobs:
     get:
@@ -214,7 +229,43 @@ paths:
       responses:
         200:
           description: Delete Employee
-
+  /tasks:
+    get:
+      operationId: Get Tasks
+      summary: Get a list of Jobs
+      responses:
+        200:
+          description: List of Jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Job"
+    post:
+      operationId: Add Job
+      summary: Create Job
+      requestBody:
+        description: Job information that is submitted
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Job"
+      responses:
+        201:
+          description: Add Job
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
   /health:
     get:
       responses:
