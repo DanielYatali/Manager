@@ -16,33 +16,43 @@ components:
     Job:
       type: object
       properties:
+        id:
+          type: string
         title:
           type: string
         description:
           type: string
-        employees:
-          type: array
-          items:
-            $ref: "#/components/schemas/Job"
-
     Employee:
       type: object
       properties:
+        id:
+          type: string
         firstName:
           type: string
         lastName:
           type: string
-        jobID:
-          type: integer
+        job:
+          type: object
+          $ref: "#/components/schemas/Job"
         email:
           type: string
         dob:
           type: string
         age:
           type: integer
+        tasks:
+          type: array
+          $ref: "#/components/schemas/Task"
+          nullable: true
+        logs:
+          type: array
+          $ref: "#/components/schemas/Log"
+          nullable: true
     Task:
       type: object
       properties:
+        id:
+          type: string
         tableName:
           type: string
         description:
@@ -53,12 +63,28 @@ components:
           type: integer
         workedTime:
           type: string
+          nullable: true
         status:
           type: string
+        dateCompleted:
+          type: string
+          nullable: true
+    Log:
+      type: object
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+        tasksCompleted:
+          type: integer
+        hourWorked:
+          type: integer
+
 paths:
   /jobs:
     get:
-      operationId: Get Jobs
+      operationId: job.list
       summary: Get a list of Jobs
       responses:
         200:
@@ -77,7 +103,7 @@ paths:
                     items:
                       $ref: "#/components/schemas/Job"
     post:
-      operationId: Add Job
+      operationId: job.create
       summary: Create Job
       requestBody:
         description: Job information that is submitted
@@ -96,7 +122,7 @@ paths:
 
   /employees:
     get:
-      operationId: Get Employees
+      operationId: employee.list
       summary: Get a list of Employees
       responses:
         200:
@@ -115,7 +141,7 @@ paths:
                     items:
                       $ref: "#/components/schemas/Employee"
     post:
-      operationId: Add Employee
+      operationId: employee.create
       summary: Create Employee
       requestBody:
         description: Employee information that is submitted
@@ -134,6 +160,7 @@ paths:
 
   /jobs/{id}:
     get:
+      operationId: job.view
       parameters:
         - in: path
           name: id
@@ -149,6 +176,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Job"
     put:
+      operationId: job.update
       parameters:
         - in: path
           name: id
@@ -170,6 +198,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Job"
     delete:
+      operationId: job.delete
       parameters:
         - in: path
           name: id
@@ -183,6 +212,7 @@ paths:
 
   /employees/{id}:
     get:
+      operationId: employee.view
       parameters:
         - in: path
           name: id
@@ -198,6 +228,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Employee"
     put:
+      operationId: employee.update
       parameters:
         - in: path
           name: id
@@ -219,6 +250,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Employee"
     delete:
+      operationId: employee.delete
       parameters:
         - in: path
           name: id
@@ -230,12 +262,13 @@ paths:
         200:
           description: Delete Employee
   /tasks:
+    operationId: task.list
     get:
       operationId: Get Tasks
-      summary: Get a list of Jobs
+      summary: Get a list of Tasks
       responses:
         200:
-          description: List of Jobs
+          description: List of Tasks
           content:
             application/json:
               schema:
@@ -248,24 +281,24 @@ paths:
                   items:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Job"
+                      $ref: "#/components/schemas/Task"
     post:
-      operationId: Add Job
-      summary: Create Job
+      operationId: task.create
+      summary: Create task
       requestBody:
-        description: Job information that is submitted
+        description: Task information that is submitted
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Job"
+              $ref: "#/components/schemas/Task"
       responses:
         201:
-          description: Add Job
+          description: Add Task
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Job"
+                $ref: "#/components/schemas/Task"
   /health:
     get:
       responses:
