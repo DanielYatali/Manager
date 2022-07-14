@@ -299,6 +299,148 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Task"
+  /tasks/{id}:
+    get:
+      operationId: task.view
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Get task data by id
+      responses:
+        200:
+          description: Get task information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+    put:
+      operationId: task.update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Update Task Information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Task"
+      responses:
+        200:
+          description: Get Task information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+    delete:
+      operationId: task.delete
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Delete Task
+      responses:
+        200:
+          description: Delete Task
+
+  /log:
+    operationId: log.list
+    get:
+      operationId: Get Log
+      summary: Get a list of Log
+      responses:
+        200:
+          description: List of Log
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  items:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Log"
+    post:
+      operationId: log.create
+      summary: Create log
+      requestBody:
+        description: Log information that is submitted
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Log"
+      responses:
+        201:
+          description: Add Log
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Log"
+  /log/{id}:
+    get:
+      operationId: log.view
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Get log data by id
+      responses:
+        200:
+          description: Get log information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Log"
+    put:
+      operationId: log.update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Update Log Information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Log"
+      responses:
+        200:
+          description: Get Log information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Log"
+    delete:
+      operationId: log.delete
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      summary: Delete Log
+      responses:
+        200:
+          description: Delete Log
+
   /health:
     get:
       responses:
