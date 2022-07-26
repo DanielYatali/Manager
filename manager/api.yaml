@@ -1,32 +1,66 @@
 openapi: 3.0.3
 info:
-  title: website
-  description: website
+  title: manager
+  description: manager
   version: 5.0.0-alpha
 servers:
-  - url: "https://prod1.weos.sh/website"
   - url: "http://localhost:8681"
 x-weos-config:
   basePath:
   database:
     driver: sqlite3
-    database: test.db
+    database: manager.db
 components:
   schemas:
+    FilterOptions:
+      type: object
+      properties:
+        eq:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          nullable: false
+        lt:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          nullable: false
+        gt:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          nullable: false
+        like:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          nullable: false
     Job:
       type: object
       properties:
         id:
           type: string
+          format: ksuid
         title:
           type: string
         description:
           type: string
+      x-identifier:
+        - id
     Employee:
       type: object
       properties:
         id:
           type: string
+          format: ksuid
         firstName:
           type: string
         lastName:
@@ -36,23 +70,34 @@ components:
           $ref: "#/components/schemas/Job"
         email:
           type: string
+          # unique: true
         dob:
           type: string
         age:
           type: integer
         tasks:
           type: array
-          $ref: "#/components/schemas/Task"
+          items:
+            $ref: "#/components/schemas/Task"
           nullable: true
         logs:
           type: array
-          $ref: "#/components/schemas/Log"
+          items:
+            $ref: "#/components/schemas/Log"
           nullable: true
+      x-identifier:
+        - id
+
     Task:
       type: object
       properties:
         id:
           type: string
+          format: ksuid
+        employees:
+          type: array
+          items:
+            $ref: "#/components/schemas/Employee"
         tableName:
           type: string
         description:
@@ -69,17 +114,22 @@ components:
         dateCompleted:
           type: string
           nullable: true
+      x-identifier:
+        - id
     Log:
       type: object
       properties:
         id:
           type: string
+          format: ksuid
         date:
           type: string
         tasksCompleted:
           type: integer
         hourWorked:
           type: integer
+      x-identifier:
+        - id
 
 paths:
   /jobs:
@@ -104,6 +154,7 @@ paths:
                       $ref: "#/components/schemas/Job"
     post:
       operationId: job.create
+      x-controller: CreateJob
       summary: Create Job
       requestBody:
         description: Job information that is submitted
@@ -262,7 +313,7 @@ paths:
         200:
           description: Delete Employee
   /tasks:
-    operationId: task.list
+    # operationId: task.list
     get:
       operationId: Get Tasks
       summary: Get a list of Tasks
@@ -352,7 +403,7 @@ paths:
           description: Delete Task
 
   /log:
-    operationId: log.list
+    # operationId: log.list
     get:
       operationId: Get Log
       summary: Get a list of Log
