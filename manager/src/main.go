@@ -16,8 +16,8 @@ func Init(ctxt context.Context, specPath string) (*weos.RESTAPI, error) {
 	api.RegisterGlobalInitializer(weos.SQLDatabase)
 	api.RegisterGlobalInitializer(weos.DefaultProjection)
 	api.RegisterGlobalInitializer(weos.DefaultEventStore)
-	api.RegisterGlobalInitializer(DefaultJobsInitializer)
-	api.RegisterGlobalInitializer(DefaultEmployeesInitializer)
+	// api.RegisterGlobalInitializer(DefaultJobsInitializer)
+	// api.RegisterGlobalInitializer(DefaultEmployeesInitializer)
 
 	// api.RegisterGlobalInitializer(MainThemeInitializer)
 	// api.RegisterOperationInitializer(ViewDataInitializer)

@@ -1,5 +1,5 @@
 <script>
-	import TaskTable from '../components/taskTable.svelte';
+	import TaskTable from '../../components/taskTable.svelte';
 </script>
 
 <div class="bg-blue w-full h-screen font-sans">

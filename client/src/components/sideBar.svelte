@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	import sideBarNav from '../stores/sideBarNav.js';
 	let openSideBar = 'flex';
 	let closeSideBar = 'none';
 	let sideBarMove = 'translateX(-260px)';
@@ -14,6 +15,7 @@
 			sideBarMove = 'translateX(-260px)';
 		}
 	}
+
 	//Options
 	const options = [
 		{
@@ -25,6 +27,10 @@
    <line x1="13.41" y1="10.59" x2="16" y2="8"></line>
    <path d="M7 12a5 5 0 0 1 5 -5"></path>
 </svg>`
+		},
+		{
+			name: 'Performance',
+			icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z"></path></svg>`
 		},
 		{
 			name: 'Employees',
@@ -102,14 +108,10 @@
 		}
 	];
 
-	const changeOption = (option) => {
-		if (option == 'Chat') {
-			goto('/chat');
-		} else if (option == 'Questions') {
-			goto('/questions');
-		} else {
-			goto('/match');
-		}
+	const changeOption = (route) => {
+		$sideBarNav = route.toLowerCase();
+		currentNav = $sideBarNav;
+		goto('/view/' + route.toLowerCase()); // go to route
 	};
 </script>
 
@@ -118,18 +120,34 @@
 	<div>
 		<ul>
 			{#each options as option}
-				<li
-					class="flex w-full  nav-gray-text hover:text-blue-600 hover:bg-white cursor-pointer p-3 pl-10 rounded-r-full mb-1 "
-				>
-					<button
-						on:click|preventDefault={() => changeOption(option)}
-						class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+				{#if option.name === $sideBarNav}
+					<li
+						class=" flex w-full text-blue-600 hover:text-blue-600 hover:bg-white cursor-pointer p-3 pl-10 rounded-r-full mb-1 "
 					>
-						{@html option.icon}
+						<button
+							on:click|preventDefault={() => changeOption(option.name)}
+							class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+						>
+							{@html option.icon}
 
-						<span class="text-sm ml-2">{option.name} </span>
-					</button>
-				</li>
+							<span class="text-sm ml-2">{option.name} </span>
+						</button>
+					</li>
+				{:else}
+					<!-- else content here -->
+					<li
+						class=" flex w-full  nav-gray-text hover:text-blue-600 hover:bg-white cursor-pointer p-3 pl-10 rounded-r-full mb-1 "
+					>
+						<button
+							on:click|preventDefault={() => changeOption(option.name)}
+							class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+						>
+							{@html option.icon}
+
+							<span class="text-sm ml-2">{option.name} </span>
+						</button>
+					</li>
+				{/if}
 			{/each}
 		</ul>
 	</div>
